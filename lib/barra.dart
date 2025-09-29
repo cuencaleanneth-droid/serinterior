@@ -9,24 +9,22 @@ class BarraNavegacion extends StatefulWidget {
   const BarraNavegacion({super.key});
 
   @override
-  BarraNavegacionState createState() => BarraNavegacionState();
+  State<BarraNavegacion> createState() => _BarraNavegacionState();
 }
 
-class BarraNavegacionState extends State<BarraNavegacion> {
+class _BarraNavegacionState extends State<BarraNavegacion> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     Inicio(),
-    TerapeutasScreen(),
-    ReservasScreen(),
-    ChatScreen(),
+    Terapeutas(),
+    Reservas(),
+    Chat(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -34,7 +32,7 @@ class BarraNavegacionState extends State<BarraNavegacion> {
             BoxShadow(
               blurRadius: 20,
               color: const Color(0xFF000000).withAlpha(26),
-            )
+            ),
           ],
         ),
         child: SafeArea(
@@ -51,22 +49,10 @@ class BarraNavegacionState extends State<BarraNavegacion> {
               tabBackgroundColor: Colors.pink.withAlpha(26),
               color: const Color(0xFF333333),
               tabs: const [
-                GButton(
-                  icon: Icons.home,
-                  text: 'Inicio',
-                ),
-                GButton(
-                  icon: Icons.people,
-                  text: 'Terapeutas',
-                ),
-                GButton(
-                  icon: Icons.calendar_today,
-                  text: 'Reservas',
-                ),
-                GButton(
-                  icon: Icons.chat_bubble_outline,
-                  text: 'Chat',
-                ),
+                GButton(icon: Icons.home, text: 'Inicio'),
+                GButton(icon: Icons.people, text: 'Terapeutas'),
+                GButton(icon: Icons.calendar_today, text: 'Reservas'),
+                GButton(icon: Icons.chat_bubble_outline, text: 'Chat'),
               ],
               selectedIndex: _selectedIndex,
               onTabChange: (index) {
