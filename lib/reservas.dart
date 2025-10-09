@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/reservas_data.dart';
+import 'package:myapp/mis_reservas_screen.dart';
+import 'package:myapp/consultorio_detail_screen.dart';
 
-class ReservasScreen extends StatelessWidget {
+class ReservasScreen extends StatefulWidget {
   const ReservasScreen({super.key});
+
+  @override
+  _ReservasScreenState createState() => _ReservasScreenState();
+}
+
+class _ReservasScreenState extends State<ReservasScreen> {
+  bool _showMisReservas = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: Column(
         children: [
           _buildHeader(context),
           _buildTabs(),
-          _buildConsultorioCard(context),
+          Expanded(
+            child: _showMisReservas
+                ? const MisReservasScreen()
+                : _buildConsultoriosList(),
+          ),
         ],
       ),
     );
@@ -54,21 +68,34 @@ class ReservasScreen extends StatelessWidget {
       child: Row(
         children: [
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                _showMisReservas = false;
+              });
+            },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
+              backgroundColor: !_showMisReservas ? Colors.blue : Colors.grey,
               foregroundColor: Colors.white,
             ),
             child: const Text('Ver Espacios'),
           ),
           const SizedBox(width: 8.0),
           TextButton(
-            onPressed: () {},
-            child: const Text('Mis Reservas'),
+            onPressed: () {
+              setState(() {
+                _showMisReservas = true;
+              });
+            },
+            child: Text(
+              'Mis Reservas',
+              style: TextStyle(
+                color: _showMisReservas ? Colors.blue : Colors.grey,
+              ),
+            ),
           ),
           const Spacer(),
           OutlinedButton.icon(
-            onPressed: () {},
+            onPressed: () => _showFilterDialog(context),
             icon: const Icon(Icons.filter_list),
             label: const Text('Filtros'),
           ),
@@ -77,7 +104,47 @@ class ReservasScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildConsultorioCard(BuildContext context) {
+  void _showFilterDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Filtros'),
+          content: const Text('Aquí irían los filtros'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cerrar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildConsultoriosList() {
+    return ListView.builder(
+      itemCount: consultorios.length,
+      itemBuilder: (context, index) {
+        final consultorio = consultorios[index];
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    ConsultorioDetailScreen(consultorio: consultorio),
+              ),
+            );
+          },
+          child: _buildConsultorioCard(context, consultorio),
+        );
+      },
+    );
+  }
+
+  Widget _buildConsultorioCard(
+      BuildContext context, Consultorio consultorio) {
     return Card(
       margin: const EdgeInsets.all(16.0),
       clipBehavior: Clip.antiAlias,
@@ -89,7 +156,7 @@ class ReservasScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
-            'assets/images/consultorio.png', // Placeholder
+            consultorio.imagen,
             fit: BoxFit.cover,
             height: 200,
             width: double.infinity,
@@ -103,14 +170,14 @@ class ReservasScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Consultorio Gratitud',
+                      consultorio.nombre,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          '\$50.000',
+                          '\$${consultorio.precio.toStringAsFixed(0)}',
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         Text(
@@ -127,29 +194,23 @@ class ReservasScreen extends StatelessWidget {
                     const Icon(Icons.people_outline, size: 16.0),
                     const SizedBox(width: 4.0),
                     Text(
-                      '2 personas',
+                      '${consultorio.capacidad} personas',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
                 ),
                 const SizedBox(height: 8.0),
                 Text(
-                  'Espacio íntimo con camilla y baño privado, ideal para terapias individuales',
+                  consultorio.descripcion,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 16.0),
                 Wrap(
                   spacing: 8.0,
                   runSpacing: 4.0,
-                  children: [
-                    _buildTag('Camilla'),
-                    _buildTag('Baño privado'),
-                    _buildTag('Iluminación natural'),
-                    ActionChip(
-                      label: const Text('+1 más'),
-                      onPressed: () {},
-                    )
-                  ],
+                  children: consultorio.amenidades
+                      .map((amenidad) => _buildTag(amenidad))
+                      .toList(),
                 ),
               ],
             ),
