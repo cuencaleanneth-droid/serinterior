@@ -17,7 +17,7 @@ class _BarraNavegacionState extends State<BarraNavegacion> {
   static const List<Widget> _widgetOptions = <Widget>[
     Inicio(),
     Terapeutas(),
-    Reservas(),
+    ReservasScreen(),
     Chat(),
   ];
 
