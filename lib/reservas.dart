@@ -7,10 +7,10 @@ class ReservasScreen extends StatefulWidget {
   const ReservasScreen({super.key});
 
   @override
-  _ReservasScreenState createState() => _ReservasScreenState();
+  ReservasScreenState createState() => ReservasScreenState();
 }
 
-class _ReservasScreenState extends State<ReservasScreen> {
+class ReservasScreenState extends State<ReservasScreen> {
   bool _showMisReservas = false;
 
   @override

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Consultorio {
   final String nombre;
   final String descripcion;
