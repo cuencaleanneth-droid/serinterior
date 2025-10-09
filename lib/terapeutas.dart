@@ -44,7 +44,7 @@ class _TerapeutasState extends State<Terapeutas> {
       subEspecialidad: 'Psicología Clínica y Terapia Cognitiva',
       descripcion:
           'Especialista en terapia cognitivo-conductual con enfoque en ansiedad y depresión.',
-      imagen: 'assets/images/photo1.png',
+      imagen: 'assets/images/logo.png',
       calificacion: 4.9,
       resenas: 127,
       aniosExperiencia: 12,
