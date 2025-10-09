@@ -193,7 +193,7 @@ class JourneySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
+      width: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -204,55 +204,58 @@ class JourneySection extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      child: Column(
-        children: [
-          const Icon(
-            Icons.favorite_border,
-            color: Colors.white,
-            size: 60,
-          ),
-          const SizedBox(height: 20),
-          const Text(
-            'Comienza tu viaje hacia el bienestar',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
+        child: Column(
+          children: [
+            const Icon(
+              Icons.favorite_border,
               color: Colors.white,
+              size: 60,
             ),
-          ),
-          const SizedBox(height: 20),
-          const Text(
-            'Únete a nuestra comunidad y descubre el poder de la conexión auténtica',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.white70,
-            ),
-          ),
-          const SizedBox(height: 30),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 40,
-                vertical: 15,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
+            const SizedBox(height: 20),
+            const Text(
+              'Comienza tu viaje hacia el bienestar',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
-            child: const Text(
-              'Empezar Ahora',
+            const SizedBox(height: 20),
+            const Text(
+              'Únete a nuestra comunidad y descubre el poder de la conexión auténtica',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
+                color: Colors.white70,
               ),
             ),
-          ),
-        ],
+            const SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40,
+                  vertical: 15,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: const Text(
+                'Empezar Ahora',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
