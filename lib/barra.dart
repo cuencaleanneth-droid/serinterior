@@ -18,7 +18,7 @@ class _BarraNavegacionState extends State<BarraNavegacion> {
     Inicio(),
     Terapeutas(),
     ReservasScreen(),
-    Chat(),
+    ChatScreen(),
   ];
 
   @override
