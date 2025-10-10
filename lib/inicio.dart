@@ -152,9 +152,9 @@ class Inicio extends StatelessWidget {
                 horizontal: 24.0,
                 vertical: 50.0,
               ),
-              child: Column(
+              child: const Column(
                 children: [
-                  const Text(
+                  Text(
                     'Todo lo que necesitas en un solo lugar',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -163,8 +163,8 @@ class Inicio extends StatelessWidget {
                       color: Color(0xFF333333),
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  const Text(
+                  SizedBox(height: 16),
+                  Text(
                     'Descubre todas las herramientas y servicios diseñados para tu bienestar',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -173,8 +173,8 @@ class Inicio extends StatelessWidget {
                       height: 1.5,
                     ),
                   ),
-                  const SizedBox(height: 50),
-                  const FeatureCards(),
+                  SizedBox(height: 50),
+                  FeatureCards(),
                 ],
               ),
             ),
@@ -208,11 +208,7 @@ class JourneySection extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
         child: Column(
           children: [
-            const Icon(
-              Icons.favorite_border,
-              color: Colors.white,
-              size: 60,
-            ),
+            const Icon(Icons.favorite_border, color: Colors.white, size: 60),
             const SizedBox(height: 20),
             const Text(
               'Comienza tu viaje hacia el bienestar',
@@ -227,10 +223,7 @@ class JourneySection extends StatelessWidget {
             const Text(
               'Únete a nuestra comunidad y descubre el poder de la conexión auténtica',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.white70,
-              ),
+              style: TextStyle(fontSize: 18, color: Colors.white70),
             ),
             const SizedBox(height: 30),
             ElevatedButton(

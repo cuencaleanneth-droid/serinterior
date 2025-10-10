@@ -120,12 +120,12 @@ class _TerapeutasState extends State<Terapeutas> {
                   end: Alignment.bottomCenter,
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
+              child: const Padding(
+                padding: EdgeInsets.all(24.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
+                  children: [
                     SizedBox(height: 20),
                     Text(
                       'Encuentra tu Terapeuta Ideal',

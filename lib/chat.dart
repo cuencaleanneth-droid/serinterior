@@ -40,13 +40,17 @@ class ChatScreenState extends State<ChatScreen> {
                       const Text(
                         "Dra. María Elena Rodríguez",
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       const SizedBox(height: 6),
                       Text(
                         "Psicóloga Clínica",
                         style: TextStyle(
-                            color: Colors.grey.shade600, fontSize: 13),
+                          color: Colors.grey.shade600,
+                          fontSize: 13,
+                        ),
                       ),
                     ],
                   ),
@@ -68,7 +72,11 @@ class ChatScreenState extends State<ChatScreen> {
               itemBuilder: (context, index) {
                 return Container(
                   padding: const EdgeInsets.only(
-                      left: 14, right: 14, top: 10, bottom: 10),
+                    left: 14,
+                    right: 14,
+                    top: 10,
+                    bottom: 10,
+                  ),
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Container(
@@ -110,9 +118,10 @@ class ChatScreenState extends State<ChatScreen> {
                 const Expanded(
                   child: TextField(
                     decoration: InputDecoration(
-                        hintText: "Write message...",
-                        hintStyle: TextStyle(color: Colors.black54),
-                        border: InputBorder.none),
+                      hintText: "Write message...",
+                      hintStyle: TextStyle(color: Colors.black54),
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 15),
@@ -120,8 +129,7 @@ class ChatScreenState extends State<ChatScreen> {
                   onPressed: () {},
                   backgroundColor: Colors.blue,
                   elevation: 0,
-                  child:
-                      const Icon(Icons.send, color: Colors.white, size: 18),
+                  child: const Icon(Icons.send, color: Colors.white, size: 18),
                 ),
               ],
             ),

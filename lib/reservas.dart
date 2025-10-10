@@ -46,16 +46,16 @@ class ReservasScreenState extends State<ReservasScreen> {
           Text(
             'Reserva tu Espacio Ideal',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 8.0),
           Text(
             'Consultorios y salones equipados en nuestra casa Ser Interior',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Colors.white70,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(color: Colors.white70),
           ),
         ],
       ),
@@ -143,15 +143,12 @@ class ReservasScreenState extends State<ReservasScreen> {
     );
   }
 
-  Widget _buildConsultorioCard(
-      BuildContext context, Consultorio consultorio) {
+  Widget _buildConsultorioCard(BuildContext context, Consultorio consultorio) {
     return Card(
       margin: const EdgeInsets.all(16.0),
       clipBehavior: Clip.antiAlias,
       elevation: 4.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -185,7 +182,7 @@ class ReservasScreenState extends State<ReservasScreen> {
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
                 const SizedBox(height: 8.0),
@@ -221,9 +218,6 @@ class ReservasScreenState extends State<ReservasScreen> {
   }
 
   Widget _buildTag(String label) {
-    return Chip(
-      label: Text(label),
-      backgroundColor: Colors.grey.shade200,
-    );
+    return Chip(label: Text(label), backgroundColor: Colors.grey.shade200);
   }
 }

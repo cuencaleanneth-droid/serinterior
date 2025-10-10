@@ -19,7 +19,8 @@ class Consultorio {
 final List<Consultorio> consultorios = [
   Consultorio(
     nombre: 'Consultorio Gratitud',
-    descripcion: 'Espacio íntimo con camilla y baño privado, ideal para terapias individuales.',
+    descripcion:
+        'Espacio íntimo con camilla y baño privado, ideal para terapias individuales.',
     imagen: 'assets/images/consultorio.png',
     precio: 50000,
     capacidad: 2,
@@ -27,7 +28,8 @@ final List<Consultorio> consultorios = [
   ),
   Consultorio(
     nombre: 'Salón Armonía',
-    descripcion: 'Salón amplio y luminoso, perfecto para talleres y terapias grupales.',
+    descripcion:
+        'Salón amplio y luminoso, perfecto para talleres y terapias grupales.',
     imagen: 'assets/images/salon.png',
     precio: 80000,
     capacidad: 10,

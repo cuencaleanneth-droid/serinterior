@@ -9,9 +9,7 @@ class ConsultorioDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(consultorio.nombre),
-      ),
+      appBar: AppBar(title: Text(consultorio.nombre)),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,8 +28,8 @@ class ConsultorioDetailScreen extends StatelessWidget {
                   Text(
                     consultorio.nombre,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 8.0),
                   Text(
@@ -47,18 +45,20 @@ class ConsultorioDetailScreen extends StatelessWidget {
                   Text(
                     'Amenidades',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 8.0),
                   Wrap(
                     spacing: 8.0,
                     runSpacing: 4.0,
                     children: consultorio.amenidades
-                        .map((amenidad) => Chip(
-                              label: Text(amenidad),
-                              backgroundColor: Colors.grey.shade200,
-                            ))
+                        .map(
+                          (amenidad) => Chip(
+                            label: Text(amenidad),
+                            backgroundColor: Colors.grey.shade200,
+                          ),
+                        )
                         .toList(),
                   ),
                   const SizedBox(height: 24.0),
@@ -67,7 +67,9 @@ class ConsultorioDetailScreen extends StatelessWidget {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 48.0, vertical: 16.0),
+                          horizontal: 48.0,
+                          vertical: 16.0,
+                        ),
                       ),
                       child: const Text('Reservar'),
                     ),
