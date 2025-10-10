@@ -57,7 +57,7 @@ class _TerapeutasState extends State<Terapeutas> {
       subEspecialidad: 'Terapia de Reiki y Sanación Energética',
       descripcion:
           'Maestro de Reiki con amplia experiencia en la sanación y el equilibrio de los chakras.',
-      imagen: 'assets/images/photo2.png',
+      imagen: 'assets/images/consultorio.png',
       calificacion: 4.8,
       resenas: 98,
       aniosExperiencia: 10,
@@ -70,7 +70,7 @@ class _TerapeutasState extends State<Terapeutas> {
       subEspecialidad: 'Coaching de Vida y Desarrollo Profesional',
       descripcion:
           'Ayudo a las personas a alcanzar sus metas y a vivir una vida más plena y con propósito.',
-      imagen: 'assets/images/photo3.png',
+      imagen: 'assets/images/consultorio2.png',
       calificacion: 5.0,
       resenas: 153,
       aniosExperiencia: 8,
