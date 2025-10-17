@@ -19,9 +19,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - you can reconfigure this by running the FlutterFire CLI again.',
@@ -33,44 +31,58 @@ class DefaultFirebaseOptions {
     }
   }
 
-  // Pega aquí tu configuración para WEB
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: "REEMPLAZA_CON_TU_API_KEY_WEB",
-    appId: "REEMPLAZA_CON_TU_APP_ID_WEB",
-    messagingSenderId: "REEMPLAZA_CON_TU_MESSAGING_SENDER_ID",
-    projectId: "REEMPLAZA_CON_TU_PROJECT_ID",
-    authDomain: "REEMPLAZA_CON_TU_AUTH_DOMAIN",
-    storageBucket: "REEMPLAZA_CON_TU_STORAGE_BUCKET",
+    apiKey: 'AIzaSyDXxnFR-nnLVtQJ1OmVAb0rdAIU96n2VAU',
+    appId: '1:576814429965:web:567cb710856dc4b1572244',
+    messagingSenderId: '576814429965',
+    projectId: 'aplicacionapp-947b6',
+    authDomain: 'aplicacionapp-947b6.firebaseapp.com',
+    storageBucket: 'aplicacionapp-947b6.firebasestorage.app',
+    measurementId: 'G-6T202CGSE6',
+  );
+
+  // Pega aquí tu configuración para WEB
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyDDllUcH-Kg_V4FJpDOnGjH4WfEtB2Gcsg',
+    appId: '1:576814429965:android:129398e84a48bd3d572244',
+    messagingSenderId: '576814429965',
+    projectId: 'aplicacionapp-947b6',
+    storageBucket: 'aplicacionapp-947b6.firebasestorage.app',
   );
 
   // Pega aquí tu configuración para ANDROID
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: "REEMPLAZA_CON_TU_API_KEY_ANDROID",
-    appId: "REEMPLAZA_CON_TU_APP_ID_ANDROID",
-    messagingSenderId: "REEMPLAZA_CON_TU_MESSAGING_SENDER_ID",
-    projectId: "REEMPLAZA_CON_TU_PROJECT_ID",
-    storageBucket: "REEMPLAZA_CON_TU_STORAGE_BUCKET",
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyA9Rz-cCIwX72bVpzcX2ahfnE5V_0IeWGs',
+    appId: '1:576814429965:ios:2a4776edd4f631e4572244',
+    messagingSenderId: '576814429965',
+    projectId: 'aplicacionapp-947b6',
+    storageBucket: 'aplicacionapp-947b6.firebasestorage.app',
+    iosBundleId: 'com.example.myapp',
   );
 
   // Pega aquí tu configuración para IOS
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: "REEMPLAZA_CON_TU_API_KEY_IOS",
-    appId: "REEMPLAZA_CON_TU_APP_ID_IOS",
-    messagingSenderId: "REEMPLAZA_CON_TU_MESSAGING_SENDER_ID",
-    projectId: "REEMPLAZA_CON_TU_PROJECT_ID",
-    storageBucket: "REEMPLAZA_CON_TU_STORAGE_BUCKET",
-    iosBundleId: "REEMPLAZA_CON_TU_IOS_BUNDLE_ID",
-    iosClientId: "REEMPLAZA_CON_TU_IOS_CLIENT_ID",
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyA9Rz-cCIwX72bVpzcX2ahfnE5V_0IeWGs',
+    appId: '1:576814429965:ios:2a4776edd4f631e4572244',
+    messagingSenderId: '576814429965',
+    projectId: 'aplicacionapp-947b6',
+    storageBucket: 'aplicacionapp-947b6.firebasestorage.app',
+    iosBundleId: 'com.example.myapp',
   );
 
   // Pega aquí tu configuración para MACOS
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: "REEMPLAZA_CON_TU_API_KEY_MACOS",
-    appId: "REEMPLAZA_CON_TU_APP_ID_MACOS",
-    messagingSenderId: "REEMPLAZA_CON_TU_MESSAGING_SENDER_ID",
-    projectId: "REEMPLAZA_CON_TU_PROJECT_ID",
-    storageBucket: "REEMPLAZA_CON_TU_STORAGE_BUCKET",
-    iosBundleId: "REEMPLAZA_CON_TU_MACOS_BUNDLE_ID",
-    iosClientId: "REEMPLAZA_CON_TU_MACOS_CLIENT_ID",
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyDXxnFR-nnLVtQJ1OmVAb0rdAIU96n2VAU',
+    appId: '1:576814429965:web:8663aeff66095ba9572244',
+    messagingSenderId: '576814429965',
+    projectId: 'aplicacionapp-947b6',
+    authDomain: 'aplicacionapp-947b6.firebaseapp.com',
+    storageBucket: 'aplicacionapp-947b6.firebasestorage.app',
+    measurementId: 'G-41SGNSY3GP',
   );
+
 }
