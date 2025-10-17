@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/barra.dart';
 import 'package:myapp/firebase_options.dart';
+import 'package:myapp/inicio.dart';
 import 'package:myapp/login_screen.dart';
 
 void main() async {
@@ -30,7 +31,8 @@ class SerInteriorApp extends StatelessWidget {
           } else if (snapshot.hasData) {
             return const BarraNavegacion();
           } else {
-            return const LoginScreen();
+            // return const LoginScreen();
+            return const Inicio();
           }
         },
       ),
