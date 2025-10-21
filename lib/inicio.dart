@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/menu.dart';
+import 'package:myapp/terapeutas.dart';
 import 'package:myapp/testimonios.dart';
 import 'tarjetas.dart';
 
@@ -101,7 +102,12 @@ class Inicio extends StatelessWidget {
                     ),
                     const SizedBox(height: 50),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const Terapeutas()),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.pinkAccent.shade400,
                         padding: const EdgeInsets.symmetric(
@@ -210,13 +216,13 @@ class JourneySection extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 24),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 60, horizontal: 24),
         child: Column(
           children: [
-            const Icon(Icons.favorite_border, color: Colors.white, size: 60),
-            const SizedBox(height: 20),
-            const Text(
+            Icon(Icons.favorite_border, color: Colors.white, size: 60),
+            SizedBox(height: 20),
+            Text(
               'Comienza tu viaje hacia el bienestar',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -225,13 +231,13 @@ class JourneySection extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height: 20),
-            const Text(
+            SizedBox(height: 20),
+            Text(
               'Únete a nuestra comunidad y descubre el poder de la conexión auténtica',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 18, color: Colors.white70),
             ),
-            const SizedBox(height: 30),
+            SizedBox(height: 30),
           ],
         ),
       ),
