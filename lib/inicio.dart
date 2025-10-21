@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/menu.dart';
+import 'package:myapp/reservas.dart';
 import 'package:myapp/terapeutas.dart';
 import 'package:myapp/testimonios.dart';
 import 'tarjetas.dart';
@@ -130,7 +131,12 @@ class Inicio extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const ReservasScreen()),
+                        );
+                      },
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(
                           color: Colors.blueAccent,
