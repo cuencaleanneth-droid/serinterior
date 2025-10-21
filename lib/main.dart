@@ -23,19 +23,7 @@ class SerInteriorApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasData) {
-            return const BarraNavegacion();
-          } else {
-            // return const LoginScreen();
-            return const Inicio();
-          }
-        },
-      ),
+      home: const BarraNavegacion(),
     );
   }
 }
