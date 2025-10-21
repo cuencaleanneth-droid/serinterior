@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/menu.dart';
 import 'package:myapp/testimonios.dart';
 import 'tarjetas.dart';
 
@@ -15,12 +16,17 @@ class Inicio extends StatelessWidget {
         elevation: 0,
         title: Image.asset('assets/images/logo.png', height: 100),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.menu, color: Colors.black),
-            onPressed: () {},
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.menu, color: Colors.black),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            ),
           ),
         ],
       ),
+      endDrawer: const Menu(),
       body: SingleChildScrollView(
         child: Column(
           children: [
