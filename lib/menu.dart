@@ -74,13 +74,6 @@ class Menu extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.book),
-            title: const Text('Blog'),
-            onTap: () {
-              // Navigate to Blog screen
-            },
-          ),
-          ListTile(
             leading: const Icon(Icons.store),
             title: const Text('Tienda'),
             onTap: () {

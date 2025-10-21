@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/menu.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -12,21 +13,31 @@ class ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        automaticallyImplyLeading: false,
+        toolbarHeight: 100,
         backgroundColor: Colors.white,
-        flexibleSpace: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.only(right: 16),
+        elevation: 0,
+        title: Image.asset('assets/images/logo.png', height: 100),
+        actions: [
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.menu, color: Colors.black),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            ),
+          ),
+        ],
+      ),
+      endDrawer: const Menu(),
+      body: Column(
+        children: <Widget>[
+          // This is the header that was part of the old AppBar
+          // You might want to display this information differently now
+          Container(
+            padding: const EdgeInsets.only(right: 16, left: 16, top: 10, bottom: 10),
+            color: Colors.white,
             child: Row(
               children: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back, color: Colors.black),
-                ),
-                const SizedBox(width: 2),
                 const CircleAvatar(
                   // backgroundImage: NetworkImage("<https://randomuser.me/api/portraits/women/65.jpg>"),
                   maxRadius: 20,
@@ -61,10 +72,7 @@ class ChatScreenState extends State<ChatScreen> {
               ],
             ),
           ),
-        ),
-      ),
-      body: Column(
-        children: <Widget>[
+          const Divider(),
           Expanded(
             child: ListView.builder(
               itemCount: 1,

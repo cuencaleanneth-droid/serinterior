@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/reservas_data.dart';
 import 'package:myapp/mis_reservas_screen.dart';
 import 'package:myapp/consultorio_detail_screen.dart';
+import 'package:myapp/menu.dart';
 
 class ReservasScreen extends StatefulWidget {
   const ReservasScreen({super.key});
@@ -16,6 +17,23 @@ class ReservasScreenState extends State<ReservasScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 100,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Image.asset('assets/images/logo.png', height: 100),
+        actions: [
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.menu, color: Colors.black),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            ),
+          ),
+        ],
+      ),
+      endDrawer: const Menu(),
       body: Column(
         children: [
           _buildHeader(context),

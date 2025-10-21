@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/menu.dart';
 
 class Terapeuta {
   final String nombre;
@@ -64,19 +65,6 @@ class _TerapeutasState extends State<Terapeutas> {
       consultorio: 'Espacio Ser Interior',
       precio: '60.000',
     ),
-    Terapeuta(
-      nombre: 'Sofía Castro',
-      especialidad: 'Coach Personal',
-      subEspecialidad: 'Coaching de Vida y Desarrollo Profesional',
-      descripcion:
-          'Ayudo a las personas a alcanzar sus metas y a vivir una vida más plena y con propósito.',
-      imagen: 'assets/images/consultorio2.png',
-      calificacion: 5.0,
-      resenas: 153,
-      aniosExperiencia: 8,
-      consultorio: 'Online',
-      precio: '70.000',
-    ),
   ];
 
   List<Terapeuta> get _terapeutasFiltrados {
@@ -99,12 +87,17 @@ class _TerapeutasState extends State<Terapeutas> {
         elevation: 0,
         title: Image.asset('assets/images/logo.png', height: 100),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.menu, color: Colors.black),
-            onPressed: () {},
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.menu, color: Colors.black),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
+            ),
           ),
         ],
       ),
+      endDrawer: const Menu(),
       body: SingleChildScrollView(
         child: Column(
           children: [
