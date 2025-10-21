@@ -40,12 +40,6 @@ final List<Feature> _features = [
     iconColor: Color(0xFFF4511E), // Naranja
   ),
   const Feature(
-    title: 'Blog de Bienestar',
-    subtitle: 'Artículos para inspirarte.',
-    icon: Icons.article,
-    iconColor: Color(0xFFD81B60), // Rosa
-  ),
-  const Feature(
     title: 'Tienda Espiritual',
     subtitle: 'Productos para tu práctica.',
     icon: Icons.store,

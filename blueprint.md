@@ -25,10 +25,7 @@ Ser Interior is a mobile application that connects people with holistic therapis
 - **`reservas.dart`:** A placeholder screen for booking sessions with therapists.
 - **`chat.dart`:** A placeholder screen for secure communication with therapists.
 
-## Current Change: Fixing Image Asset Errors
+## Current Change: Removing the "Blog de Bienestar"
 
-- **Objective:** Resolve all image asset errors that are preventing the app from building and running correctly.
-- **`pubspec.yaml`:** Updated to include all assets in the `assets/images/` directory.
-- **`lib/inicio.dart`:** Corrected the path for `logo.png` to `assets/images/logo.png`.
-- **`lib/terapeutas.dart`:** Corrected the paths for `logo.png`, `terapeuta1.png`, `terapeuta2.png`, and `terapeuta3.png` to include the `assets/` prefix.
-- **`assets/images/`:** Created placeholder images for `terapeuta1.png`, `terapeuta2.png`, and `terapeuta3.png` since they were missing.
+- **Objective:** Remove the "Blog de Bienestar" feature card from the main screen.
+- **`lib/tarjetas.dart`:** Removed the `Feature` widget with the title 'Blog de Bienestar' from the `_features` list.
