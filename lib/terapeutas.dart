@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:myapp/menu.dart';
 
 class Terapeuta {
@@ -11,7 +12,7 @@ class Terapeuta {
   final int resenas;
   final int aniosExperiencia;
   final String consultorio;
-  final String precio;
+  final int precio;
 
   Terapeuta({
     required this.nombre,
@@ -50,21 +51,20 @@ class _TerapeutasState extends State<Terapeutas> {
       resenas: 127,
       aniosExperiencia: 12,
       consultorio: 'Consultorio Gratitud',
-      precio: '80.000',
+      precio: 80000,
     ),
-     Terapeuta(
+    Terapeuta(
       nombre: 'Héctor García',
       especialidad: 'Coach Personal',
       subEspecialidad: 'Life Coach y Desarrollo Personal',
-      descripcion:
-          'Coach certificado especializado en liderazgo y emprendimiento.',
+      descripcion: 'Coach certificado especializado en liderazgo y emprendimiento.',
       imagen: 'assets/images/consultorio.png',
       calificacion: 4.9,
       resenas: 99,
       aniosExperiencia: 11,
       consultorio: 'Consultorio Armonía',
-      precio: '60.000',
-     ),
+      precio: 60000,
+    ),
     Terapeuta(
       nombre: 'Carlos López',
       especialidad: 'Terapeutas Holísticos',
@@ -76,7 +76,7 @@ class _TerapeutasState extends State<Terapeutas> {
       resenas: 98,
       aniosExperiencia: 10,
       consultorio: 'Consultorío Calma',
-      precio: '60.000',
+      precio: 60000,
     ),
   ];
 
@@ -234,6 +234,8 @@ class _TerapeutasState extends State<Terapeutas> {
   }
 
   Widget _buildTherapistCard(Terapeuta terapeuta) {
+    final formatCurrency = NumberFormat("\$ #,##0", "es_CO");
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 10.0),
       child: Card(
@@ -325,7 +327,7 @@ class _TerapeutasState extends State<Terapeutas> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '\$${terapeuta.precio}/sesión',
+                        '${formatCurrency.format(terapeuta.precio)}/sesión',
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,

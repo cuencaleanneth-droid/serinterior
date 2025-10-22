@@ -2,7 +2,7 @@ class Consultorio {
   final String nombre;
   final String descripcion;
   final String imagen;
-  final double precio;
+  final int precio;
   final int capacidad;
   final List<String> amenidades;
 
@@ -22,7 +22,7 @@ final List<Consultorio> consultorios = [
     descripcion:
         'Espacio íntimo con camilla y baño privado, ideal para terapias individuales.',
     imagen: 'assets/images/consultorio3.png',
-    precio: 50.000,
+    precio: 50000,
     capacidad: 2,
     amenidades: ['Camilla', 'Baño privado', 'Iluminación natural'],
   ),
@@ -31,7 +31,7 @@ final List<Consultorio> consultorios = [
     descripcion:
         'Salón amplio y luminoso, perfecto para talleres y terapias grupales.',
     imagen: 'assets/images/consultorio2.png',
-    precio: 80.000,
+    precio: 80000,
     capacidad: 10,
     amenidades: ['Sillas y cojines', 'Equipo de sonido', 'Aire acondicionado'],
   ),
@@ -39,7 +39,7 @@ final List<Consultorio> consultorios = [
     nombre: 'Consultorio Calma',
     descripcion: 'Consultorio acogedor para terapias de pareja o familia.',
     imagen: 'assets/images/consultorio.png',
-    precio: 60.000,
+    precio: 60000,
     capacidad: 4,
     amenidades: ['Sofá cómodo', 'Mesa de centro', 'Dispensador de agua'],
   ),

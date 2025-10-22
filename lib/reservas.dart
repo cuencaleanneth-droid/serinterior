@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:myapp/reservas_data.dart';
 import 'package:myapp/mis_reservas_screen.dart';
 import 'package:myapp/consultorio_detail_screen.dart';
@@ -176,6 +177,8 @@ class ReservasScreenState extends State<ReservasScreen> {
   }
 
   Widget _buildConsultorioCard(BuildContext context, Consultorio consultorio) {
+    final formatCurrency = NumberFormat("\$ #,##0", "es_CO");
+
     return Card(
       margin: const EdgeInsets.all(16.0),
       clipBehavior: Clip.antiAlias,
@@ -202,13 +205,15 @@ class ReservasScreenState extends State<ReservasScreen> {
                       consultorio.nombre,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                    Row(
                       children: [
                         Text(
-                          '\$${consultorio.precio.toStringAsFixed(0)}',
-                          style: Theme.of(context).textTheme.titleLarge,
+                          formatCurrency.format(consultorio.precio),
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
+                        const SizedBox(width: 4.0),
                         Text(
                           'por hora',
                           style: Theme.of(context).textTheme.bodySmall,
