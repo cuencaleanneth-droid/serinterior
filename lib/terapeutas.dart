@@ -46,7 +46,7 @@ class _TerapeutasState extends State<Terapeutas> {
       subEspecialidad: 'Psicología Clínica y Terapia Cognitiva',
       descripcion:
           'Especialista en terapia cognitivo-conductual con enfoque en ansiedad y depresión.',
-      imagen: 'assets/images/logo.png',
+      imagen: 'assets/images/maria.png',
       calificacion: 4.9,
       resenas: 127,
       aniosExperiencia: 12,
@@ -58,7 +58,7 @@ class _TerapeutasState extends State<Terapeutas> {
       especialidad: 'Coach Personal',
       subEspecialidad: 'Life Coach y Desarrollo Personal',
       descripcion: 'Coach certificado especializado en liderazgo y emprendimiento.',
-      imagen: 'assets/images/consultorio.png',
+      imagen: 'assets/images/foto2.png',
       calificacion: 4.9,
       resenas: 99,
       aniosExperiencia: 11,
@@ -71,7 +71,7 @@ class _TerapeutasState extends State<Terapeutas> {
       subEspecialidad: 'Terapia de Reiki y Sanación Energética',
       descripcion:
           'Maestro de Reiki con amplia experiencia en la sanación y el equilibrio de los chakras.',
-      imagen: 'assets/images/consultorio.png',
+      imagen: 'assets/images/foto3.png',
       calificacion: 4.8,
       resenas: 98,
       aniosExperiencia: 10,

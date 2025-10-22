@@ -35,8 +35,6 @@ class ChatScreenState extends State<ChatScreen> {
       endDrawer: const Menu(),
       body: Column(
         children: <Widget>[
-          // This is the header that was part of the old AppBar
-          // You might want to display this information differently now
           Container(
             padding: const EdgeInsets.only(right: 16, left: 16, top: 10, bottom: 10),
             color: Colors.white,
