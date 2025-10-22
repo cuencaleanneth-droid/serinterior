@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:myapp/chat.dart';
 import 'package:myapp/reservas.dart';
 import 'package:myapp/terapeutas.dart';
+import 'package:myapp/tiendas.dart';
 
 class Menu extends StatelessWidget {
   const Menu({super.key});
@@ -77,7 +77,11 @@ class Menu extends StatelessWidget {
             leading: const Icon(Icons.store),
             title: const Text('Tienda'),
             onTap: () {
-              // Navigate to Tienda screen
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const TiendasScreen()),
+              );
             },
           ),
         ],

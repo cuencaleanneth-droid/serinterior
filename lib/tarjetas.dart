@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/tiendas.dart';
 
 class Feature {
   final String title;
   final String subtitle;
   final IconData icon;
   final Color iconColor;
+  final Widget? destinationScreen;
 
   const Feature({
     required this.title,
     required this.subtitle,
     required this.icon,
     required this.iconColor,
+    this.destinationScreen,
   });
 }
 
@@ -45,6 +48,7 @@ final List<Feature> _features = [
         'Lugares donde nos puedes encontrar y comprar productos para tus prácticas.',
     icon: Icons.store,
     iconColor: Color(0xFF00ACC1), // Cian
+    destinationScreen: TiendasScreen(),
   ),
 ];
 
@@ -60,11 +64,23 @@ class FeatureCards extends StatelessWidget {
       separatorBuilder: (context, index) => const SizedBox(height: 20),
       itemBuilder: (context, index) {
         final feature = _features[index];
-        return FeatureCard(
-          icon: feature.icon,
-          iconColor: feature.iconColor,
-          title: feature.title,
-          subtitle: feature.subtitle,
+        return GestureDetector(
+          onTap: () {
+            if (feature.destinationScreen != null) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => feature.destinationScreen!,
+                ),
+              );
+            }
+          },
+          child: FeatureCard(
+            icon: feature.icon,
+            iconColor: feature.iconColor,
+            title: feature.title,
+            subtitle: feature.subtitle,
+          ),
         );
       },
     );
