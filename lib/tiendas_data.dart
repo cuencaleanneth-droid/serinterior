@@ -6,6 +6,7 @@ class Tienda {
   final String direccion;
   final String telefono;
   final String imagen;
+  final String botonTexto;
 
   Tienda({
     required this.ciudad,
@@ -13,6 +14,7 @@ class Tienda {
     required this.direccion,
     required this.telefono,
     required this.imagen,
+    required this.botonTexto,
   });
 }
 
@@ -23,6 +25,7 @@ final List<Tienda> tiendas = [
     direccion: 'Mallplaza Buenavista-Loc LS-054B',
     telefono: 'Tel: +57 305 2891184',
     imagen: 'assets/images/tienda1.png',
+    botonTexto: 'Ubicación aquí',
   ),
   Tienda(
     ciudad: 'Barranquilla',
@@ -30,6 +33,7 @@ final List<Tienda> tiendas = [
     direccion: 'CC Portal del Prado Loc 107',
     telefono: '', // No phone in image
     imagen: 'assets/images/tienda2.png',
+    botonTexto: 'Visítanos',
   ),
   Tienda(
     ciudad: 'Barranquilla',
@@ -37,6 +41,7 @@ final List<Tienda> tiendas = [
     direccion: 'CC Villa Country Loc 103',
     telefono: 'Tel:+57 319 7835821',
     imagen: 'assets/images/tienda3.png',
+    botonTexto: 'Conócenos',
   ),
   Tienda(
     ciudad: 'Medellín',
@@ -44,6 +49,7 @@ final List<Tienda> tiendas = [
     direccion: 'CC Unicentro Loc 2-332',
     telefono: 'Tel: +57 319 6848093',
     imagen: 'assets/images/tienda4.png',
+    botonTexto: 'Ubicación aquí',
   ),
   Tienda(
     ciudad: 'Medellín',
@@ -51,6 +57,7 @@ final List<Tienda> tiendas = [
     direccion: 'CC Oviedo Loc 117',
     telefono: 'Tel:+57 319 5036973',
     imagen: 'assets/images/tienda5.png',
+    botonTexto: 'Visítanos',
   ),
   Tienda(
     ciudad: 'Cali',
@@ -58,5 +65,6 @@ final List<Tienda> tiendas = [
     direccion: 'CC Unicentro local 321',
     telefono: 'Tel: +57 319 4735520',
     imagen: 'assets/images/tienda6.png',
+    botonTexto: 'Ubicación aquí',
   ),
 ];

@@ -37,12 +37,6 @@ final List<Feature> _features = [
     iconColor: Color(0xFF43A047), // Verde
   ),
   const Feature(
-    title: 'Podcast Exclusivo',
-    subtitle: 'Contenido para tu crecimiento.',
-    icon: Icons.headset,
-    iconColor: Color(0xFFF4511E), // Naranja
-  ),
-  const Feature(
     title: 'Nuestras Tiendas Espirituales',
     subtitle:
         'Lugares donde nos puedes encontrar y comprar productos para tus prácticas.',
