@@ -191,24 +191,6 @@ class TiendasScreen extends StatelessWidget {
                     style: const TextStyle(fontSize: 14, color: Colors.black54),
                   ),
                   const Spacer(), // Pushes the button to the bottom
-                  Align(
-                    alignment: Alignment.center,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF6CACDE),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 12),
-                      ),
-                      child: Text(
-                        tienda.botonTexto,
-                        style: const TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
