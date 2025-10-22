@@ -29,7 +29,7 @@ final List<Consultorio> consultorios = [
   Consultorio(
     nombre: 'Consultorio Armonía',
     descripcion:
-        'Salón amplio y luminoso, perfecto para talleres y terapias grupales.',
+        'Consultorio amplio y luminoso, perfecto para talleres y terapias grupales.',
     imagen: 'assets/images/consultorio2.png',
     precio: 80000,
     capacidad: 10,

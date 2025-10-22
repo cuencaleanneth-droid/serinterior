@@ -5,6 +5,11 @@ class MisReservasScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Mis Reservas'));
+    return const Center(
+      child: Text(
+        'Aquí verás tus reservas.',
+        style: TextStyle(fontSize: 18, color: Colors.grey),
+      ),
+    );
   }
 }

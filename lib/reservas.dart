@@ -137,20 +137,6 @@ class ReservasScreenState extends State<ReservasScreen> {
             ),
             child: const Text('Ver Espacios'),
           ),
-          const SizedBox(width: 8.0),
-          TextButton(
-            onPressed: () {
-              setState(() {
-                _showMisReservas = true;
-              });
-            },
-            child: Text(
-              'Mis Reservas',
-              style: TextStyle(
-                color: _showMisReservas ? Colors.blue : Colors.grey,
-              ),
-            ),
-          ),
           const Spacer(),
           OutlinedButton.icon(
             key: _filterButtonKey,
@@ -164,12 +150,15 @@ class ReservasScreenState extends State<ReservasScreen> {
   }
 
   void _showFilterMenu(BuildContext context) {
-    final RenderBox button = _filterButtonKey.currentContext!.findRenderObject() as RenderBox;
-    final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
+    final RenderBox button =
+        _filterButtonKey.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox overlay =
+        Overlay.of(context).context.findRenderObject() as RenderBox;
     final RelativeRect position = RelativeRect.fromRect(
       Rect.fromPoints(
         button.localToGlobal(Offset.zero, ancestor: overlay),
-        button.localToGlobal(button.size.bottomRight(Offset.zero), ancestor: overlay),
+        button.localToGlobal(button.size.bottomRight(Offset.zero),
+            ancestor: overlay),
       ),
       Offset.zero & overlay.size,
     );
@@ -191,7 +180,8 @@ class ReservasScreenState extends State<ReservasScreen> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Filtrar por Precio', style: TextStyle(fontWeight: FontWeight.bold)),
+                    const Text('Filtrar por Precio',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 10),
                     RangeSlider(
                       values: currentRange ?? RangeValues(_minPrice, _maxPrice),
@@ -213,8 +203,10 @@ class ReservasScreenState extends State<ReservasScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(formatCurrency.format(currentRange?.start ?? _minPrice)),
-                        Text(formatCurrency.format(currentRange?.end ?? _maxPrice)),
+                        Text(formatCurrency
+                            .format(currentRange?.start ?? _minPrice)),
+                        Text(formatCurrency
+                            .format(currentRange?.end ?? _maxPrice)),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -228,7 +220,8 @@ class ReservasScreenState extends State<ReservasScreen> {
                           Navigator.of(context).pop();
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(128, 90, 213, 1),
+                          backgroundColor:
+                              const Color.fromRGBO(128, 90, 213, 1),
                           foregroundColor: Colors.white,
                         ),
                         child: const Text('FILTRO'),
@@ -311,9 +304,10 @@ class ReservasScreenState extends State<ReservasScreen> {
                       children: [
                         Text(
                           formatCurrency.format(consultorio.precio),
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                         const SizedBox(width: 4.0),
                         Text(
