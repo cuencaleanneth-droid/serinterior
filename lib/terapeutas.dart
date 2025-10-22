@@ -251,9 +251,10 @@ class _TerapeutasState extends State<Terapeutas> {
               ),
               child: Image.asset(
                 terapeuta.imagen,
-                height: 180,
+                height: 220,
                 width: double.infinity,
                 fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
               ),
             ),
             Padding(
