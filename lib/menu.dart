@@ -67,13 +67,6 @@ class Menu extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.headset),
-            title: const Text('Podcast'),
-            onTap: () {
-              // Navigate to Podcast screen
-            },
-          ),
-          ListTile(
             leading: const Icon(Icons.store),
             title: const Text('Tienda'),
             onTap: () {
