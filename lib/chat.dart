@@ -16,7 +16,11 @@ class ChatScreenState extends State<ChatScreen> {
         toolbarHeight: 100,
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Image.asset('assets/images/logo.png', height: 100),
+        title: const CircleAvatar(
+          backgroundImage: AssetImage('assets/images/logo2.png'),
+          radius: 30,
+        ),
+        centerTitle: true,
         actions: [
           Builder(
             builder: (context) => IconButton(
@@ -38,18 +42,13 @@ class ChatScreenState extends State<ChatScreen> {
             color: Colors.white,
             child: Row(
               children: <Widget>[
-                const CircleAvatar(
-                  // backgroundImage: NetworkImage("<https://randomuser.me/api/portraits/women/65.jpg>"),
-                  maxRadius: 20,
-                ),
-                const SizedBox(width: 12),
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       const Text(
-                        "Dra. María Elena Rodríguez",
+                        "Ser Interior",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -57,7 +56,7 @@ class ChatScreenState extends State<ChatScreen> {
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        "Psicóloga Clínica",
+                        "Atención al Cliente",
                         style: TextStyle(
                           color: Colors.grey.shade600,
                           fontSize: 13,
@@ -66,9 +65,6 @@ class ChatScreenState extends State<ChatScreen> {
                     ],
                   ),
                 ),
-                const Icon(Icons.videocam, color: Colors.black54),
-                const SizedBox(width: 20),
-                const Icon(Icons.phone, color: Colors.black54),
               ],
             ),
           ),
@@ -94,7 +90,7 @@ class ChatScreenState extends State<ChatScreen> {
                       ),
                       padding: const EdgeInsets.all(16),
                       child: const Text(
-                        "Hola, ¿cómo te has sentido después de nu...",
+                        "Hola, ¿cómo puedo ayudarte?",
                         style: TextStyle(fontSize: 15),
                       ),
                     ),
@@ -110,18 +106,6 @@ class ChatScreenState extends State<ChatScreen> {
             color: Colors.white,
             child: Row(
               children: <Widget>[
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      color: Colors.lightBlue,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: const Icon(Icons.add, color: Colors.white, size: 20),
-                  ),
-                ),
                 const SizedBox(width: 15),
                 const Expanded(
                   child: TextField(

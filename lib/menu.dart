@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/barra.dart';
 import 'package:myapp/chat.dart';
 import 'package:myapp/reservas.dart';
 import 'package:myapp/terapeutas.dart';
@@ -30,7 +31,11 @@ class Menu extends StatelessWidget {
             title: const Text('Inicio'),
             onTap: () {
               Navigator.pop(context);
-              // You might want to navigate to the home screen here
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const BarraNavegacion()),
+                (Route<dynamic> route) => false,
+              );
             },
           ),
           ListTile(
