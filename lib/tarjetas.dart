@@ -40,8 +40,9 @@ final List<Feature> _features = [
     iconColor: Color(0xFFF4511E), // Naranja
   ),
   const Feature(
-    title: 'Tienda Espiritual',
-    subtitle: 'Productos para tu práctica.',
+    title: 'Nuestras Tiendas Espirituales',
+    subtitle:
+        'Lugares donde nos puedes encontrar y comprar productos para tus prácticas.',
     icon: Icons.store,
     iconColor: Color(0xFF00ACC1), // Cian
   ),

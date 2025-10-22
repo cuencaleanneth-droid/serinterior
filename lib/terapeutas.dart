@@ -52,6 +52,19 @@ class _TerapeutasState extends State<Terapeutas> {
       consultorio: 'Consultorio Gratitud',
       precio: '80.000',
     ),
+     Terapeuta(
+      nombre: 'Héctor García',
+      especialidad: 'Coach Personal',
+      subEspecialidad: 'Life Coach y Desarrollo Personal',
+      descripcion:
+          'Coach certificado especializado en liderazgo y emprendimiento.',
+      imagen: 'assets/images/consultorio.png',
+      calificacion: 4.9,
+      resenas: 99,
+      aniosExperiencia: 11,
+      consultorio: 'Consultorio Armonía',
+      precio: '60.000',
+     ),
     Terapeuta(
       nombre: 'Carlos López',
       especialidad: 'Terapeutas Holísticos',
@@ -62,7 +75,7 @@ class _TerapeutasState extends State<Terapeutas> {
       calificacion: 4.8,
       resenas: 98,
       aniosExperiencia: 10,
-      consultorio: 'Espacio Ser Interior',
+      consultorio: 'Consultorío Calma',
       precio: '60.000',
     ),
   ];

@@ -50,32 +50,46 @@ class ReservasScreenState extends State<ReservasScreen> {
 
   Widget _buildHeader(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24.0),
+      width: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.blue, Colors.purple],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          colors: [
+            Color.fromRGBO(128, 90, 213, 1),
+            Color.fromRGBO(75, 0, 130, 1),
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Reserva tu Espacio Ideal',
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+      child: const Padding(
+        padding: EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 20),
+            Text(
+              'Reserva tu Espacio Ideal',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 48,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          const SizedBox(height: 8.0),
-          Text(
-            'Consultorios y salones equipados en nuestra casa Ser Interior',
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(color: Colors.white70),
-          ),
-        ],
+            SizedBox(height: 20),
+            Text(
+              'Consultorios y salones equipados en nuestra casa Ser Interior',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white70,
+                height: 1.5,
+              ),
+            ),
+            SizedBox(height: 30),
+          ],
+        ),
       ),
     );
   }

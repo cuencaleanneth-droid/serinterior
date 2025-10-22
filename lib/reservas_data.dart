@@ -27,7 +27,7 @@ final List<Consultorio> consultorios = [
     amenidades: ['Camilla', 'Baño privado', 'Iluminación natural'],
   ),
   Consultorio(
-    nombre: 'Salón Armonía',
+    nombre: 'Consultorio Armonía',
     descripcion:
         'Salón amplio y luminoso, perfecto para talleres y terapias grupales.',
     imagen: 'assets/images/salon.png',
@@ -36,7 +36,7 @@ final List<Consultorio> consultorios = [
     amenidades: ['Sillas y cojines', 'Equipo de sonido', 'Aire acondicionado'],
   ),
   Consultorio(
-    nombre: 'Espacio Calma',
+    nombre: 'Consultorio Calma',
     descripcion: 'Consultorio acogedor para terapias de pareja o familia.',
     imagen: 'assets/images/consultorio2.png',
     precio: 60000,
