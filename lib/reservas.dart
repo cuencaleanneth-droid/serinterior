@@ -4,6 +4,7 @@ import 'package:myapp/reservas_data.dart';
 import 'package:myapp/mis_reservas_screen.dart';
 import 'package:myapp/consultorio_detail_screen.dart';
 import 'package:myapp/menu.dart';
+import 'dart:math';
 
 class ReservasScreen extends StatefulWidget {
   const ReservasScreen({super.key});
@@ -14,6 +15,30 @@ class ReservasScreen extends StatefulWidget {
 
 class ReservasScreenState extends State<ReservasScreen> {
   bool _showMisReservas = false;
+  String _sortOrder = 'default';
+  RangeValues? _selectedPriceRange;
+  double _minPrice = 0;
+  double _maxPrice = 0;
+  final GlobalKey _filterButtonKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    _initializePriceRange();
+  }
+
+  void _initializePriceRange() {
+    if (consultorios.isNotEmpty) {
+      final prices = consultorios.map((c) => c.precio).toList();
+      _minPrice = prices.reduce(min).toDouble();
+      _maxPrice = prices.reduce(max).toDouble();
+      _selectedPriceRange = RangeValues(_minPrice, _maxPrice);
+    } else {
+      _minPrice = 0;
+      _maxPrice = 100000; // Default max price
+      _selectedPriceRange = const RangeValues(0, 100000);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +153,8 @@ class ReservasScreenState extends State<ReservasScreen> {
           ),
           const Spacer(),
           OutlinedButton.icon(
-            onPressed: () => _showFilterDialog(context),
+            key: _filterButtonKey,
+            onPressed: () => _showFilterMenu(context),
             icon: const Icon(Icons.filter_list),
             label: const Text('Filtros'),
           ),
@@ -137,29 +163,105 @@ class ReservasScreenState extends State<ReservasScreen> {
     );
   }
 
-  void _showFilterDialog(BuildContext context) {
-    showDialog(
+  void _showFilterMenu(BuildContext context) {
+    final RenderBox button = _filterButtonKey.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
+    final RelativeRect position = RelativeRect.fromRect(
+      Rect.fromPoints(
+        button.localToGlobal(Offset.zero, ancestor: overlay),
+        button.localToGlobal(button.size.bottomRight(Offset.zero), ancestor: overlay),
+      ),
+      Offset.zero & overlay.size,
+    );
+
+    final formatCurrency = NumberFormat("\$ #,##0", "es_CO");
+    RangeValues? currentRange = _selectedPriceRange;
+
+    showMenu<void>(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Filtros'),
-          content: const Text('Aquí irían los filtros'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cerrar'),
-            ),
-          ],
-        );
-      },
+      position: position.shift(const Offset(0, 40)),
+      items: [
+        PopupMenuItem(
+          enabled: false,
+          child: StatefulBuilder(
+            builder: (context, setDialogState) {
+              return Container(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Filtrar por Precio', style: TextStyle(fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 10),
+                    RangeSlider(
+                      values: currentRange ?? RangeValues(_minPrice, _maxPrice),
+                      min: _minPrice,
+                      max: _maxPrice,
+                      divisions: 20,
+                      activeColor: const Color.fromRGBO(128, 90, 213, 1),
+                      inactiveColor: Colors.grey.shade300,
+                      labels: RangeLabels(
+                        formatCurrency.format(currentRange?.start ?? _minPrice),
+                        formatCurrency.format(currentRange?.end ?? _maxPrice),
+                      ),
+                      onChanged: (values) {
+                        setDialogState(() {
+                          currentRange = values;
+                        });
+                      },
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(formatCurrency.format(currentRange?.start ?? _minPrice)),
+                        Text(formatCurrency.format(currentRange?.end ?? _maxPrice)),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            _selectedPriceRange = currentRange;
+                          });
+                          Navigator.of(context).pop();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromRGBO(128, 90, 213, 1),
+                          foregroundColor: Colors.white,
+                        ),
+                        child: const Text('FILTRO'),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 
   Widget _buildConsultoriosList() {
+    List<Consultorio> filteredConsultorios = List.from(consultorios);
+
+    if (_selectedPriceRange != null) {
+      filteredConsultorios = filteredConsultorios.where((c) {
+        return c.precio >= _selectedPriceRange!.start &&
+            c.precio <= _selectedPriceRange!.end;
+      }).toList();
+    }
+
+    if (_sortOrder == 'price_asc') {
+      filteredConsultorios.sort((a, b) => a.precio.compareTo(b.precio));
+    }
+
     return ListView.builder(
-      itemCount: consultorios.length,
+      itemCount: filteredConsultorios.length,
       itemBuilder: (context, index) {
-        final consultorio = consultorios[index];
+        final consultorio = filteredConsultorios[index];
         return GestureDetector(
           onTap: () {
             Navigator.push(
