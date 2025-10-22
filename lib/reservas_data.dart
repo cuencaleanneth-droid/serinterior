@@ -21,7 +21,7 @@ final List<Consultorio> consultorios = [
     nombre: 'Consultorio Gratitud',
     descripcion:
         'Espacio íntimo con camilla y baño privado, ideal para terapias individuales.',
-    imagen: 'assets/images/consultorio.png',
+    imagen: 'assets/images/consultorio3.png',
     precio: 50.000,
     capacidad: 2,
     amenidades: ['Camilla', 'Baño privado', 'Iluminación natural'],
@@ -30,7 +30,7 @@ final List<Consultorio> consultorios = [
     nombre: 'Consultorio Armonía',
     descripcion:
         'Salón amplio y luminoso, perfecto para talleres y terapias grupales.',
-    imagen: 'assets/images/salon.png',
+    imagen: 'assets/images/consultorio2.png',
     precio: 80.000,
     capacidad: 10,
     amenidades: ['Sillas y cojines', 'Equipo de sonido', 'Aire acondicionado'],
@@ -38,7 +38,7 @@ final List<Consultorio> consultorios = [
   Consultorio(
     nombre: 'Consultorio Calma',
     descripcion: 'Consultorio acogedor para terapias de pareja o familia.',
-    imagen: 'assets/images/consultorio2.png',
+    imagen: 'assets/images/consultorio.png',
     precio: 60.000,
     capacidad: 4,
     amenidades: ['Sofá cómodo', 'Mesa de centro', 'Dispensador de agua'],
