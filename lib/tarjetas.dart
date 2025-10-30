@@ -25,7 +25,7 @@ final List<Feature> _features = [
     iconColor: Color(0xFF6A1B9A), // Púrpura
   ),
   const Feature(
-    title: 'Reserva Espacios',
+    title: 'Espacios',
     subtitle: 'Encuentra lugares para tus sesiones.',
     icon: Icons.calendar_today,
     iconColor: Color(0xFF1E88E5), // Azul
@@ -38,8 +38,7 @@ final List<Feature> _features = [
   ),
   const Feature(
     title: 'Nuestras Tiendas Espirituales',
-    subtitle:
-        'Lugares donde nos puedes encontrar y comprar productos para tus prácticas.',
+    subtitle: 'Encuéntranos y cómpranos nuestros productos.',
     icon: Icons.store,
     iconColor: Color(0xFF00ACC1), // Cian
     destinationScreen: TiendasScreen(),

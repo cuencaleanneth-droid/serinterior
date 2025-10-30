@@ -51,7 +51,7 @@ class _BarraNavegacionState extends State<BarraNavegacion> {
               tabs: const [
                 GButton(icon: Icons.home, text: 'Inicio'),
                 GButton(icon: Icons.people, text: 'Terapeutas'),
-                GButton(icon: Icons.calendar_today, text: 'Reservas'),
+                GButton(icon: Icons.calendar_today, text: 'Espacios'),
                 GButton(icon: Icons.chat_bubble_outline, text: 'Chat'),
               ],
               selectedIndex: _selectedIndex,
