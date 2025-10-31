@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/chat.dart';
+import 'package:myapp/reservas.dart';
+import 'package:myapp/terapeutas.dart';
 import 'package:myapp/tiendas.dart';
 
 class Feature {
@@ -17,24 +20,28 @@ class Feature {
   });
 }
 
+// CORRECCIÓN: Se añaden las pantallas de destino a las tarjetas.
 final List<Feature> _features = [
   const Feature(
     title: 'Terapeutas Profesionales',
     subtitle: 'Conecta con especialistas certificados.',
     icon: Icons.people,
     iconColor: Color(0xFF6A1B9A), // Púrpura
+    destinationScreen: Terapeutas(), // Navega a la pantalla de Terapeutas
   ),
   const Feature(
     title: 'Espacios',
     subtitle: 'Encuentra lugares para tus sesiones.',
     icon: Icons.calendar_today,
     iconColor: Color(0xFF1E88E5), // Azul
+    destinationScreen: ReservasScreen(), // Navega a la pantalla de Reservas
   ),
   const Feature(
     title: 'Chat Seguro',
     subtitle: 'Comunícate con total privacidad.',
     icon: Icons.chat_bubble_outline,
     iconColor: Color(0xFF43A047), // Verde
+    destinationScreen: ChatScreen(), // Navega a la pantalla de Chat
   ),
   const Feature(
     title: 'Nuestras Tiendas Espirituales',

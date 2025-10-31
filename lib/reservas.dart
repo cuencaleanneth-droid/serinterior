@@ -95,7 +95,7 @@ class ReservasScreenState extends State<ReservasScreen> {
           children: [
             SizedBox(height: 20),
             Text(
-              'Reserva tu Espacio Ideal',
+              'Encuentra tu Espacio Ideal',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 48,
