@@ -5,6 +5,8 @@ import 'package:myapp/barra.dart';
 import 'package:myapp/firebase_options.dart';
 import 'package:myapp/inicio.dart';
 import 'package:myapp/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

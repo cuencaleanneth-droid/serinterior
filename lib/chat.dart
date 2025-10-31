@@ -26,7 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    _addBotMessage("Hola, soy tu asistente virtual. Puedes preguntarme por terapeutas, consultorios, precios y más.");
+    _addBotMessage("Hola, somos Ser Interior. ¿En qué podemos ayudarte hoy?");
   }
 
   void _addBotMessage(String text, {Widget? card}) {
@@ -83,7 +83,7 @@ class _ChatScreenState extends State<ChatScreen> {
         return;
       }
       if (lowerCaseMessage.contains('medellín') || lowerCaseMessage.contains('cali') || lowerCaseMessage.contains('ubicados')) {
-        _addBotMessage("Todos nuestros consultorios están en El Poblado, Medellín. Para recibir la dirección exacta, contáctanos al WhatsApp +57 300 123 4567.");
+        _addBotMessage("Todos nuestros consultorios están en El Poblado, Medellín. Para recibir la dirección exacta, contáctanos al WhatsApp +57 305 222 4894.");
         return;
       }
       if (lowerCaseMessage.contains('hola') || lowerCaseMessage.contains('buenos días')) {

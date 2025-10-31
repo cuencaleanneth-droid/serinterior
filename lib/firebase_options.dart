@@ -44,21 +44,21 @@ class DefaultFirebaseOptions {
   // Pega aquí tu configuración para WEB
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDDllUcH-Kg_V4FJpDOnGjH4WfEtB2Gcsg',
-    appId: '1:576814429965:android:129398e84a48bd3d572244',
-    messagingSenderId: '576814429965',
-    projectId: 'aplicacionapp-947b6',
-    storageBucket: 'aplicacionapp-947b6.firebasestorage.app',
+    apiKey: 'AIzaSyA-mj3l9hjF3IJWg8bIy23yDc13kQhwmHI',
+    appId: '1:938998922885:android:357d17fc0c0ac3704b73ec',
+    messagingSenderId: '938998922885',
+    projectId: 'ser-interior-app-53448',
+    storageBucket: 'ser-interior-app-53448.firebasestorage.app',
   );
 
   // Pega aquí tu configuración para ANDROID
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA9Rz-cCIwX72bVpzcX2ahfnE5V_0IeWGs',
-    appId: '1:576814429965:ios:2a4776edd4f631e4572244',
-    messagingSenderId: '576814429965',
-    projectId: 'aplicacionapp-947b6',
-    storageBucket: 'aplicacionapp-947b6.firebasestorage.app',
+    apiKey: 'AIzaSyBO6liXQBLzzEqE3k9EdxZC4tS5H5pe_ak',
+    appId: '1:938998922885:ios:45ef76f30893b5f54b73ec',
+    messagingSenderId: '938998922885',
+    projectId: 'ser-interior-app-53448',
+    storageBucket: 'ser-interior-app-53448.firebasestorage.app',
     iosBundleId: 'com.example.myapp',
   );
 
