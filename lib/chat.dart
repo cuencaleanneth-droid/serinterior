@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/data/terapeutas_data.dart'; // Importa la fuente de datos central
 import 'package:myapp/menu.dart';
 import 'package:myapp/reservas_data.dart';
 
-// Clase para representar un mensaje en el chat
 class ChatMessage {
   final String text;
   final bool isUser;
+  final Widget? card;
 
-  ChatMessage({required this.text, required this.isUser});
+  ChatMessage({required this.text, required this.isUser, this.card});
 }
 
 class ChatScreen extends StatefulWidget {
@@ -25,109 +26,144 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    // Mensaje inicial del bot
-    _addBotMessage("Hola, somos Ser Interior, ¿En qué podemos ayudarte?");
+    _addBotMessage("Hola, soy tu asistente virtual. Puedes preguntarme por terapeutas, consultorios, precios y más.");
   }
 
-  void _addBotMessage(String text) {
+  void _addBotMessage(String text, {Widget? card}) {
     setState(() {
-      _messages.insert(0, ChatMessage(text: text, isUser: false));
+      _messages.insert(0, ChatMessage(text: text, isUser: false, card: card));
     });
+    _scrollToBottom();
   }
 
   void _sendMessage() {
     final text = _textController.text.trim();
     if (text.isEmpty) return;
 
-    // Añadir mensaje del usuario
     setState(() {
       _messages.insert(0, ChatMessage(text: text, isUser: true));
     });
 
     _textController.clear();
     _scrollToBottom();
-
-    // El bot procesa el mensaje y responde
     _getBotResponse(text);
   }
 
   void _getBotResponse(String userMessage) {
-    Future.delayed(const Duration(milliseconds: 500), () {
-      String botResponse;
+    Future.delayed(const Duration(milliseconds: 600), () {
       String lowerCaseMessage = userMessage.toLowerCase();
-
-      // Busca si se menciona un consultorio específico
       Consultorio? mentionedConsultorio;
-      for (var c in consultorios) {
-        if (lowerCaseMessage.contains(c.nombre.toLowerCase())) {
-          mentionedConsultorio = c;
-          break;
-        }
+      try {
+        mentionedConsultorio = consultorios.firstWhere((c) => lowerCaseMessage.contains(c.nombre.toLowerCase().split(' ').last));
+      } catch (e) {
+        // No se encontró
       }
 
+      if (lowerCaseMessage.contains('reservar')) {
+        _handleReservation(lowerCaseMessage);
+        return;
+      }
+      if (lowerCaseMessage.contains('psicologo') || lowerCaseMessage.contains('terapeuta') || lowerCaseMessage.contains('coach')) {
+        _handleTherapistSearch(lowerCaseMessage);
+        return;
+      }
       if (mentionedConsultorio != null) {
-        // Si se menciona un consultorio, responde a preguntas específicas sobre él
-        if (lowerCaseMessage.contains('precio')) {
-          botResponse =
-              'El precio del ${mentionedConsultorio.nombre} es de \$${mentionedConsultorio.precio} COP por hora.';
-        } else if (lowerCaseMessage.contains('disponibilidad') ||
-            lowerCaseMessage.contains('hora') ||
-            lowerCaseMessage.contains('disponible')) {
-          botResponse =
-              'Para verificar la disponibilidad y agendar una cita para el ${mentionedConsultorio.nombre}, por favor comunícate directamente con nosotros al WhatsApp +57 323 386 3819. Estaremos felices de ayudarte.';
-        } else if (lowerCaseMessage.contains('capacidad')) {
-          botResponse =
-              'La capacidad del ${mentionedConsultorio.nombre} es de ${mentionedConsultorio.capacidad} personas.';
-        } else if (lowerCaseMessage.contains('amenidades')) {
-          botResponse =
-              'Las amenidades del ${mentionedConsultorio.nombre} son: ${mentionedConsultorio.amenidades.join(', ')}.';
-        } else {
-          // Si solo se menciona el nombre, da la descripción general
-          botResponse =
-              'Has seleccionado el ${mentionedConsultorio.nombre}. ${mentionedConsultorio.descripcion} ¿Qué más te gustaría saber? Puedes preguntar por su precio, capacidad o disponibilidad.';
-        }
-        setState(() {
-          _messages.insert(0, ChatMessage(text: botResponse, isUser: false));
-        });
-      } else if (lowerCaseMessage.contains('consultorios')) {
-        botResponse = "¡Claro! Aquí tienes nuestros consultorios:";
-        setState(() {
-          _messages.insert(0, ChatMessage(text: botResponse, isUser: false));
-        });
-
-        // Muestra los consultorios como tarjetas
-        for (var consultorio in consultorios) {
-          setState(() {
-            _messages.insert(
-                0,
-                ChatMessage(
-                    text: "", isUser: false)); // Placeholder para la tarjeta
-          });
-        }
-      } else if (lowerCaseMessage.contains('hola')) {
-        botResponse =
-            "¡Hola! ¿Cómo puedo ayudarte? Puedes preguntar por nuestros consultorios.";
-        setState(() {
-          _messages.insert(0, ChatMessage(text: botResponse, isUser: false));
-        });
-      } else {
-        botResponse =
-            "No te entiendo muy bien. Puedes preguntarme por 'consultorios', o si quieres saber algo específico, pregunta por el nombre del consultorio y qué quieres saber (ej: 'precio del consultorio Armonía').";
-        setState(() {
-          _messages.insert(0, ChatMessage(text: botResponse, isUser: false));
-        });
+        _handleConsultorioQuery(lowerCaseMessage, mentionedConsultorio);
+        return;
       }
-      _scrollToBottom();
+      if (lowerCaseMessage.contains('consultorios') || lowerCaseMessage.contains('espacio')) {
+        _addBotMessage("¡Claro! Aquí tienes nuestros espacios:");
+        for (var consultorio in consultorios) {
+          _addBotMessage("", card: _buildConsultorioCard(consultorio));
+        }
+        return;
+      }
+      if (lowerCaseMessage.contains('productos')) {
+        _addBotMessage("Actualmente nos enfocamos en ofrecer espacios y conectar con terapeutas. No manejamos una línea de productos.");
+        return;
+      }
+      if (lowerCaseMessage.contains('medellín') || lowerCaseMessage.contains('cali') || lowerCaseMessage.contains('ubicados')) {
+        _addBotMessage("Todos nuestros consultorios están en El Poblado, Medellín. Para recibir la dirección exacta, contáctanos al WhatsApp +57 300 123 4567.");
+        return;
+      }
+      if (lowerCaseMessage.contains('hola') || lowerCaseMessage.contains('buenos días')) {
+        _addBotMessage("¡Hola! ¿Cómo puedo ayudarte hoy?");
+        return;
+      }
+      _addBotMessage("No te he entendido bien. Prueba preguntando, por ejemplo: '¿Qué psicólogos hay en Armonía?'");
     });
+  }
+
+  void _handleReservation(String message) {
+    Consultorio? targetConsultorio;
+    try {
+      targetConsultorio = consultorios.firstWhere((c) => message.contains(c.nombre.toLowerCase().split(' ').last));
+    } catch (e) {
+      // No se encontró
+    }
+
+    String response = targetConsultorio != null
+        ? "¡Excelente elección! Para reservar el ${targetConsultorio.nombre},"
+        : "Para realizar una reserva,";
+    response += " por favor contáctanos vía WhatsApp al +57 300 123 4567.";
+    _addBotMessage(response);
+  }
+
+  void _handleTherapistSearch(String message) {
+    List<Terapeuta> results = [];
+    String specialty = "";
+
+    if (message.contains('psicologo')) specialty = 'Psicólogos';
+    else if (message.contains('coach')) specialty = 'Coach Personal';
+    else if (message.contains('terapeuta')) specialty = 'Terapeutas Holísticos';
+
+    if (specialty.isNotEmpty) {
+      results = terapeutas.where((t) => t.especialidad == specialty).toList();
+    } else {
+      results = List.from(terapeutas);
+    }
+
+    Consultorio? mentionedConsultorio;
+    try {
+      mentionedConsultorio = consultorios.firstWhere((c) => message.contains(c.nombre.toLowerCase().split(' ').last));
+    } catch (e) {
+      // No se encontró
+    }
+
+    if (mentionedConsultorio != null) {
+      final consultorioNombre = mentionedConsultorio.nombre;
+      results = results.where((t) => t.consultorio == consultorioNombre).toList();
+    }
+
+    if (results.isEmpty) {
+      _addBotMessage("No encontré especialistas que coincidan con tu búsqueda. Intenta de nuevo.");
+    } else {
+      _addBotMessage("Encontré estos especialistas para ti:");
+      for (var terapeuta in results) {
+        _addBotMessage("${terapeuta.nombre} (${terapeuta.subEspecialidad}) - Atiende en ${terapeuta.consultorio}. Precio: \$${terapeuta.precio} COP.");
+      }
+    }
+  }
+
+  void _handleConsultorioQuery(String message, Consultorio consultorio) {
+    String response;
+    if (message.contains('precio') || message.contains('en cuanto')) {
+      response = 'El precio del ${consultorio.nombre} es de \$${consultorio.precio} COP por hora.';
+    } else if (message.contains('disponibilidad') || message.contains('hora')) {
+      response = 'Para verificar la disponibilidad del ${consultorio.nombre}, contáctanos al WhatsApp +57 300 123 4567.';
+    } else if (message.contains('capacidad')) {
+      response = 'La capacidad del ${consultorio.nombre} es de ${consultorio.capacidad} personas.';
+    } else if (message.contains('amenidades')) {
+      response = 'Las amenidades del ${consultorio.nombre} son: ${consultorio.amenidades.join(', ')}.';
+    } else {
+      response = 'Estás viendo el ${consultorio.nombre}. ${consultorio.descripcion}';
+    }
+    _addBotMessage(response);
   }
 
   void _scrollToBottom() {
     if (_scrollController.hasClients) {
-      _scrollController.animateTo(
-        0.0,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
+      _scrollController.animateTo(0.0, duration: const Duration(milliseconds: 400), curve: Curves.easeOut,);
     }
   }
 
@@ -135,22 +171,23 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          toolbarHeight: 100,
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: const CircleAvatar(
-            backgroundImage: AssetImage('assets/images/logo2.png'),
-            radius: 30,
-          ),
-          centerTitle: true,
-          actions: [
-            Builder(
-              builder: (context) => IconButton(
-                icon: const Icon(Icons.menu, color: Colors.black),
-                onPressed: () => Scaffold.of(context).openEndDrawer(),
-              ),
+        toolbarHeight: 100,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: const CircleAvatar(
+          backgroundImage: AssetImage('assets/images/logo2.png'),
+          radius: 30,
+        ),
+        centerTitle: true,
+        actions: [
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.menu, color: Colors.black),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
             ),
-          ]),
+          ),
+        ],
+      ),
       endDrawer: const Menu(),
       body: Column(
         children: [
@@ -161,21 +198,8 @@ class _ChatScreenState extends State<ChatScreen> {
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final message = _messages[index];
-                if (message.text.isEmpty && !message.isUser) {
-                  int consultorioIndex = _messages
-                      .where((m) => m.text.isEmpty && !m.isUser)
-                      .toList()
-                      .indexOf(message);
-                  if (consultorioIndex < consultorios.length) {
-                    final consultorio =
-                        consultorios.reversed.toList()[consultorioIndex];
-                    return _buildConsultorioCard(consultorio);
-                  } else {
-                    return const SizedBox.shrink();
-                  }
-                } else {
-                  return _buildMessageBubble(message);
-                }
+                if (message.card != null) return message.card!;
+                return _buildMessageBubble(message);
               },
             ),
           ),
@@ -220,8 +244,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Widget _buildMessageBubble(ChatMessage message) {
-    final align =
-        message.isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start;
+    final align = message.isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start;
     final color = message.isUser ? Colors.blue.shade100 : Colors.grey.shade200;
 
     return Container(
