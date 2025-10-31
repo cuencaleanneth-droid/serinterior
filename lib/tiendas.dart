@@ -8,7 +8,7 @@ class TiendasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF0F0F0), // Lighter gray background
+      backgroundColor: const Color(0xFFF0F0F0),
       appBar: AppBar(
         toolbarHeight: 100,
         backgroundColor: Colors.white,
@@ -36,7 +36,8 @@ class TiendasScreen extends StatelessWidget {
               LayoutBuilder(
                 builder: (context, constraints) {
                   int crossAxisCount;
-                  double aspectRatio = 0.6; // Made cards taller
+                  // AJUSTE: Se modifica la proporción para hacer las tarjetas más compactas
+                  double aspectRatio = 0.8; 
 
                   if (constraints.maxWidth > 1200) {
                     crossAxisCount = 4;
@@ -44,10 +45,10 @@ class TiendasScreen extends StatelessWidget {
                     crossAxisCount = 3;
                   } else if (constraints.maxWidth > 600) {
                     crossAxisCount = 2;
-                    aspectRatio = 0.65; // Adjust for tablet
+                    aspectRatio = 0.85; // Ajuste para tablet
                   } else {
                     crossAxisCount = 1;
-                    aspectRatio = 0.6; // Adjust for mobile
+                    aspectRatio = 0.75; // Ajuste para móvil
                   }
                   return GridView.builder(
                     shrinkWrap: true,
@@ -141,7 +142,7 @@ class TiendasScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            flex: 5, // Increased flex for the image
+            flex: 5, 
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(20),
@@ -154,43 +155,44 @@ class TiendasScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 4, // Decreased flex for the content
+            flex: 4, 
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              // AJUSTE: Padding reducido para compactar el contenido
+              padding: const EdgeInsets.all(12.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center, // Centra el contenido verticalmente
                 children: [
                   Text(
                     tienda.ciudad,
                     style: const TextStyle(
                       color: Colors.purple,
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: 12, // Tamaño de fuente ajustado
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 4), // Espacio reducido
                   Text(
                     tienda.nombre,
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 18, // Tamaño de fuente ajustado
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 4), // Espacio reducido
                   Text(
                     tienda.direccion,
-                    style: const TextStyle(fontSize: 14, color: Colors.black54),
+                    style: const TextStyle(fontSize: 12, color: Colors.black54), // Tamaño de fuente ajustado
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 2), // Espacio reducido
                   Text(
                     tienda.telefono,
-                    style: const TextStyle(fontSize: 14, color: Colors.black54),
+                    style: const TextStyle(fontSize: 12, color: Colors.black54), // Tamaño de fuente ajustado
                   ),
-                  const Spacer(), // Pushes the button to the bottom
                 ],
               ),
             ),
