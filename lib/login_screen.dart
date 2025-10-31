@@ -8,6 +8,7 @@ class LoginScreen extends StatelessWidget {
 
   loginGoogle(context) async {
     try {
+      print("Vamos a llamar el login con google");
       await signInWithGoogle();
       if (!context.mounted) return;
       Navigator.pushReplacement(
@@ -26,15 +27,22 @@ class LoginScreen extends StatelessWidget {
 
   Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
+    print("Vamos a llamar la instancia");
     final GoogleSignInAccount googleUser =
         await GoogleSignIn.instance.authenticate();
+    print("llamamos la instancia");
+    print(googleUser);
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+    print("llamamos la autenticacion");
+    print(googleAuth);
 
     // Create a new credential
     final credential =
         GoogleAuthProvider.credential(idToken: googleAuth.idToken);
+    print("llamamos la credencial");
+    print(credential);
 
     // Once signed in, return the UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential);
