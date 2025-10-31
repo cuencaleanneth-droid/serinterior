@@ -6,11 +6,13 @@ import 'package:myapp/barra.dart';
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  loginGoogle(context) async {
+  Future<void> loginGoogle(BuildContext context) async {
     try {
-      print("Vamos a llamar el login con google");
+      print("Iniciando sesión con Google...");
       await signInWithGoogle();
+
       if (!context.mounted) return;
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const BarraNavegacion()),
@@ -26,25 +28,31 @@ class LoginScreen extends StatelessWidget {
   }
 
   Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    print("Vamos a llamar la instancia");
-    final GoogleSignInAccount googleUser =
-        await GoogleSignIn.instance.authenticate();
-    print("llamamos la instancia");
-    print(googleUser);
+    print("Mostrando selector de cuentas de Google...");
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication googleAuth = googleUser.authentication;
-    print("llamamos la autenticacion");
-    print(googleAuth);
+    // 🔹 Inicializa la instancia correctamente
+    final GoogleSignIn googleSignIn = GoogleSignIn(
+      scopes: ['email', 'profile'],
+    );
 
-    // Create a new credential
-    final credential =
-        GoogleAuthProvider.credential(idToken: googleAuth.idToken);
-    print("llamamos la credencial");
-    print(credential);
+    // 🔹 Inicia sesión con la cuenta de Google
+    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
-    // Once signed in, return the UserCredential
+    if (googleUser == null) {
+      throw Exception("Inicio de sesión cancelado por el usuario.");
+    }
+
+    // 🔹 Obtiene el token de autenticación
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    // 🔹 Crea las credenciales de Firebase
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    // 🔹 Inicia sesión en Firebase con las credenciales de Google
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
