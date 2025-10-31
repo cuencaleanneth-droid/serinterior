@@ -90,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.asset('assets/images/google_logo.png', height: 24),
+                      Image.asset('assets/images/google.png', height: 24),
                       const SizedBox(width: 10),
                       const Text(
                         'Google',
