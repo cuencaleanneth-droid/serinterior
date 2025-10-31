@@ -105,7 +105,7 @@ class _ChatScreenState extends State<ChatScreen> {
     String response = targetConsultorio != null
         ? "¡Excelente elección! Para reservar el ${targetConsultorio.nombre},"
         : "Para realizar una reserva,";
-    response += " por favor contáctanos vía WhatsApp al +57 300 123 4567.";
+    response += " por favor contáctanos vía WhatsApp al +57 305 222 4894.";
     _addBotMessage(response);
   }
 
