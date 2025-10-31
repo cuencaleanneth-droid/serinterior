@@ -150,7 +150,7 @@ class _ChatScreenState extends State<ChatScreen> {
     if (message.contains('precio') || message.contains('en cuanto')) {
       response = 'El precio del ${consultorio.nombre} es de \$${consultorio.precio} COP por hora.';
     } else if (message.contains('disponibilidad') || message.contains('hora')) {
-      response = 'Para verificar la disponibilidad del ${consultorio.nombre}, contáctanos al WhatsApp +57 300 123 4567.';
+      response = 'Para verificar la disponibilidad del ${consultorio.nombre}, contáctanos al WhatsApp +57 305 222 4894.';
     } else if (message.contains('capacidad')) {
       response = 'La capacidad del ${consultorio.nombre} es de ${consultorio.capacidad} personas.';
     } else if (message.contains('amenidades')) {
