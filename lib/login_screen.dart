@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/barra.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:myapp/barra.dart';
+import 'package:myapp/google_auth_service.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+
+  final authService = GoogleAuthService();
 
   Future<void> loginGoogle(BuildContext context) async {
     try {
@@ -94,7 +97,22 @@ class LoginScreen extends StatelessWidget {
               ),
               child: Center(
                 child: ElevatedButton(
-                  onPressed: () => loginGoogle(context),
+                  onPressed: () async {
+                    final user = await authService.signInWithGoogle();
+                    print("Informacion del usuario");
+                    print(user);
+
+                    if (user != null) {
+                      print('Usuario autenticado: ${user.displayName}');
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BarraNavegacion()),
+                      );
+                    } else {
+                      print('Inicio de sesión cancelado o fallido');
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">myapp</string>
+
+    <!-- ID de cliente web obtenido del google-services.json -->
+    <string name="default_web_client_id">
+        938998922885-s9vpjs08l2tv7fas7bb7aejemv0635ej.apps.googleusercontent.com
+    </string>
+</resources>
