@@ -97,21 +97,12 @@ class LoginScreen extends StatelessWidget {
               ),
               child: Center(
                 child: ElevatedButton(
-                  onPressed: () async {
-                    final user = await authService.signInWithGoogle();
-                    print("Informacion del usuario");
-                    print(user);
-
-                    if (user != null) {
-                      print('Usuario autenticado: ${user.displayName}');
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BarraNavegacion()),
-                      );
-                    } else {
-                      print('Inicio de sesión cancelado o fallido');
-                    }
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BarraNavegacion()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
@@ -124,10 +115,10 @@ class LoginScreen extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.asset('assets/images/google.png', height: 24),
+                      Image.asset('assets/images/flecha.png', height: 24),
                       const SizedBox(width: 10),
                       const Text(
-                        'Google',
+                        'Click aquí',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
