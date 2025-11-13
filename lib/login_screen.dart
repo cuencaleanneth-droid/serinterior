@@ -118,7 +118,7 @@ class LoginScreen extends StatelessWidget {
                       Image.asset('assets/images/flecha.png', height: 24),
                       const SizedBox(width: 10),
                       const Text(
-                        'Click aquí',
+                        'Click para ver más',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
