@@ -9,7 +9,16 @@ class ConsultorioDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(consultorio.nombre)),
+      appBar: AppBar(
+        toolbarHeight: 100,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Image.asset('assets/images/logo.png', height: 100),
+        centerTitle: true,
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,8 +37,8 @@ class ConsultorioDetailScreen extends StatelessWidget {
                   Text(
                     consultorio.nombre,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   const SizedBox(height: 8.0),
                   Text(
@@ -45,8 +54,8 @@ class ConsultorioDetailScreen extends StatelessWidget {
                   Text(
                     'Amenidades',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   const SizedBox(height: 8.0),
                   Wrap(
@@ -62,18 +71,6 @@ class ConsultorioDetailScreen extends StatelessWidget {
                         .toList(),
                   ),
                   const SizedBox(height: 24.0),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 48.0,
-                          vertical: 16.0,
-                        ),
-                      ),
-                      child: const Text('Reservar'),
-                    ),
-                  ),
                 ],
               ),
             ),
