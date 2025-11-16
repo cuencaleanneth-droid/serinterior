@@ -62,18 +62,6 @@ class ConsultorioDetailScreen extends StatelessWidget {
                         .toList(),
                   ),
                   const SizedBox(height: 24.0),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 48.0,
-                          vertical: 16.0,
-                        ),
-                      ),
-                      child: const Text('Reservar'),
-                    ),
-                  ),
                 ],
               ),
             ),
