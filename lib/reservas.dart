@@ -60,15 +60,23 @@ class ReservasScreenState extends State<ReservasScreen> {
         ],
       ),
       endDrawer: const Menu(),
-      body: Column(
-        children: [
-          _buildHeader(context),
-          _buildTabs(),
-          Expanded(
-            child: _showMisReservas
-                ? const MisReservasScreen()
-                : _buildConsultoriosList(),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: _buildHeader(context),
           ),
+          SliverPersistentHeader(
+            delegate: _SliverAppBarDelegate(
+              _buildTabs(),
+            ),
+            pinned: true,
+          ),
+          if (_showMisReservas)
+            const SliverFillRemaining(
+              child: MisReservasScreen(),
+            )
+          else
+            _buildConsultoriosList(),
         ],
       ),
     );
@@ -121,30 +129,33 @@ class ReservasScreenState extends State<ReservasScreen> {
   }
 
   Widget _buildTabs() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: Row(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                _showMisReservas = false;
-              });
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: !_showMisReservas ? Colors.blue : Colors.grey,
-              foregroundColor: Colors.white,
+    return Container(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: Row(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  _showMisReservas = false;
+                });
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: !_showMisReservas ? Colors.blue : Colors.grey,
+                foregroundColor: Colors.white,
+              ),
+              child: const Text('Ver Espacios'),
             ),
-            child: const Text('Ver Espacios'),
-          ),
-          const Spacer(),
-          OutlinedButton.icon(
-            key: _filterButtonKey,
-            onPressed: () => _showFilterMenu(context),
-            icon: const Icon(Icons.filter_list),
-            label: const Text('Filtros'),
-          ),
-        ],
+            const Spacer(),
+            OutlinedButton.icon(
+              key: _filterButtonKey,
+              onPressed: () => _showFilterMenu(context),
+              icon: const Icon(Icons.filter_list),
+              label: const Text('Filtros'),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -251,23 +262,25 @@ class ReservasScreenState extends State<ReservasScreen> {
       filteredConsultorios.sort((a, b) => a.precio.compareTo(b.precio));
     }
 
-    return ListView.builder(
-      itemCount: filteredConsultorios.length,
-      itemBuilder: (context, index) {
-        final consultorio = filteredConsultorios[index];
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    ConsultorioDetailScreen(consultorio: consultorio),
-              ),
-            );
-          },
-          child: _buildConsultorioCard(context, consultorio),
-        );
-      },
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          final consultorio = filteredConsultorios[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ConsultorioDetailScreen(consultorio: consultorio),
+                ),
+              );
+            },
+            child: _buildConsultorioCard(context, consultorio),
+          );
+        },
+        childCount: filteredConsultorios.length,
+      ),
     );
   }
 
@@ -352,5 +365,27 @@ class ReservasScreenState extends State<ReservasScreen> {
 
   Widget _buildTag(String label) {
     return Chip(label: Text(label), backgroundColor: Colors.grey.shade200);
+  }
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate(this._tabBar);
+
+  final Widget _tabBar;
+
+  @override
+  double get minExtent => 56.0;
+  @override
+  double get maxExtent => 56.0;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return _tabBar;
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
   }
 }
