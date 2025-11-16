@@ -17,6 +17,7 @@ class Inicio extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Image.asset('assets/images/logo.png', height: 100),
+        centerTitle: true,
         actions: [
           Builder(
             builder: (context) => IconButton(
